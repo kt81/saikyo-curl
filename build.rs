@@ -94,7 +94,13 @@ fn main() {
         .build();
     println!("cargo:rustc-link-search=native={}", curl_dst.clone().join("lib").display());
     println!("cargo:rustc-link-lib=static=libcurl"); 
-    // println!("cargo:rustc-link-lib=dynamic=msvcrt");
-    // println!("cargo:rustc-link-lib=static=ws2_32");
-    // println!("cargo:rustc-link-lib=static=userenv");
+
+    bindgen::Builder::default()
+        .header(safe_path!(curl_dst, "include/curl/curl.h"))
+        .allowlist_function("^curl_.*")
+        .generate()
+        .expect("Unable to generate bindings")
+        .write_to_file("src/curl.rs")
+        .expect("Unable to write src/curl.rs");
+
 }

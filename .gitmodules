@@ -1,0 +1,9 @@
+[submodule "deps/curl"]
+	path = deps/curl
+	url = https://github.com/curl/curl.git
+[submodule "deps/boringssl"]
+	path = deps/boringssl
+	url = https://github.com/google/boringssl.git
+[submodule "deps/brotli"]
+	path = deps/brotli
+	url = https://github.com/google/brotli.git
